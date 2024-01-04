@@ -14,4 +14,10 @@ cd
 mkdir .config/nvim
 git clone git@github.com:BenMerken/nvim-config.git .
 ```
+Make sure to have 'ripgrep' installed, as it is a required dependency for telescope's 'grep_string' functionality:
+
+MacOS:
+```sh
+brew install ripgrep
+```
 
