@@ -10,42 +10,20 @@ if not vim.loop.fs_stat(lazypath) then
     })
 end
 vim.opt.rtp:prepend(lazypath)
+
 require("lazy").setup({
-    {
-        'nvim-telescope/telescope.nvim',
-        branch = '0.1.x',
-        dependencies = { 'nvim-lua/plenary.nvim' },
-        config = function()
-            local telescope = require("telescope")
-            local actions = require("telescope.actions")
-
-            telescope.setup({
-                defaults = {
-                    mappings = {
-                        i = {
-                            ["<C-j>"] = actions.move_selection_next,
-                            ["<C-k>"] = actions.move_selection_previous,
-                        }
-                    }
-                }
-            })
-        end
+    {import = "ben.plugins"},
+    {import = "ben.plugins.lsp"}
+},
+{
+    install = {
+        colorscheme = {'rose-pine'}
     },
-    { 'rose-pine/neovim', name = 'rose-pine' },
-    {'nvim-treesitter/nvim-treesitter', build = ':TSUpdate'},
-    {'ThePrimeagen/harpoon'},
-    {'mbbill/undotree'},
-    {'tpope/vim-fugitive'},
-
-    -- LSP
-    --- Uncomment these if you want to manage the language servers from neovim
-    {'williamboman/mason.nvim'},
-    {'williamboman/mason-lspconfig.nvim'},
-
-    {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
-    {'neovim/nvim-lspconfig'},
-    {'hrsh7th/cmp-nvim-lsp'},
-    {'hrsh7th/nvim-cmp'},
-    {'L3MON4D3/LuaSnip'},
-    -- LSP
-}, opts)
+    checker = {
+        enabled = true,
+        notify = false,
+    },
+    change_detection = {
+        notify = false,
+    },
+})
