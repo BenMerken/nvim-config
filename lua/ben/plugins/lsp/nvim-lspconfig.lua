@@ -80,6 +80,30 @@ return {
             on_attach = on_attach,
         })
 
+        -- Rust
+        lspconfig["rust_analyzer"].setup({
+            capabilities = capabilities,
+             on_attach = on_attach,
+             settings = {
+                 ["rust_analyzer"] = {
+                     imports = {
+                         granularity = {
+                             group = "module",
+                         },
+                         prefix = "self",
+                     },
+                     cargo = {
+                         buildScripts = {
+                             enable = true,
+                         },
+                     },
+                     procMacro = {
+                         enable = true,
+                     },
+                 }
+             }
+         })
+
         -- Lua
         lspconfig["lua_ls"].setup({
             capabilities = capabilities,

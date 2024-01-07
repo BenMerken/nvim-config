@@ -18,6 +18,7 @@ return {
                 "html",
                 "cssls",
                 "lua_ls",
+                "rust_analyzer",
                 "gopls",
             },
             automatic_installation = true,
