@@ -5,6 +5,7 @@ return {
     },
     config = function()
         local lspconfig = require("lspconfig")
+        local util = require "lspconfig/util"
         local cmp_nvim_lsp = require("cmp_nvim_lsp")
         local keymap = vim.keymap
 
@@ -78,31 +79,42 @@ return {
         lspconfig["gopls"].setup({
             capabilities = capabilities,
             on_attach = on_attach,
+            filetypes = { "go", "gomod", "gowork", "gotmpl" },
+            root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+            settings = {
+                gopls = {
+                    completeUnimported = true,
+                    usePlaceholders = true,
+                    analyses = {
+                        unusedParams = true,
+                    },
+                },
+            },
         })
 
         -- Rust
         lspconfig["rust_analyzer"].setup({
             capabilities = capabilities,
-             on_attach = on_attach,
-             settings = {
-                 ["rust_analyzer"] = {
-                     imports = {
-                         granularity = {
-                             group = "module",
-                         },
-                         prefix = "self",
-                     },
-                     cargo = {
-                         buildScripts = {
-                             enable = true,
-                         },
-                     },
-                     procMacro = {
-                         enable = true,
-                     },
-                 }
-             }
-         })
+            on_attach = on_attach,
+            settings = {
+                ["rust_analyzer"] = {
+                    imports = {
+                        granularity = {
+                            group = "module",
+                        },
+                        prefix = "self",
+                    },
+                    cargo = {
+                        buildScripts = {
+                            enable = true,
+                        },
+                    },
+                    procMacro = {
+                        enable = true,
+                    },
+                }
+            }
+        })
 
         -- Lua
         lspconfig["lua_ls"].setup({
