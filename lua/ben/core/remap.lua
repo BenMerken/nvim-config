@@ -21,3 +21,6 @@ keymap.set("n", "<leader>p", "\"_dP")
 
 -- Select all
 keymap.set("n", "<C-a>", "gg<S-v>G")
+
+-- nvim-tree
+keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
